@@ -57,3 +57,17 @@ func (c *Client) GenerateTransactionId() (transactionId string, err error) {
 	err = c.basicRequest("generate_tx_id", nil, &transactionId)
 	return
 }
+
+func (c *Client) CalculateChange(groth uint64, assetId uint64, fee uint64, isPushTransaction bool) (assetChange, beamChange, explicitFee uint64, err error) {
+	var resp struct {
+		AssetChange uint64 `json:"asset_change"`
+		BeamChange uint64 `json:"change"`
+		ExplicitFee uint64 `json:"explicit_fee"`
+	}
+
+	err = c.basicRequest("calc_change",
+		rpc.JsonParams{"amount": groth, "asset_id": assetId, "fee": fee, "is_push_transaction": isPushTransaction},
+		&resp)
+
+	return resp.AssetChange, resp.BeamChange, resp.ExplicitFee, err
+}
