@@ -43,17 +43,17 @@ type TransactionStatus struct {
 	Token string `json:"token"`
 }
 
-func (c *Client) TransactionStatus (transactionId string) (txStatus TransactionStatus, err error) {
+func (c *Client) TransactionStatus(transactionId string) (txStatus TransactionStatus, err error) {
 	err = c.basicRequest("tx_status", rpc.JsonParams{ "txId": transactionId }, &txStatus)
 	return
 }
 
-func (c *Client) TransactionList (options *TransactionListOptions) (transactions []TransactionStatus, err error) {
+func (c *Client) TransactionList(options *TransactionListOptions) (transactions []TransactionStatus, err error) {
 	err = c.basicRequest("tx_list", options.rpcPrepare(), &transactions)
 	return
 }
 
-func (c *Client) GenerateTransactionId () (transactionId string, err error) {
+func (c *Client) GenerateTransactionId() (transactionId string, err error) {
 	err = c.basicRequest("generate_tx_id", nil, &transactionId)
 	return
 }

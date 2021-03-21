@@ -2,12 +2,37 @@ package wallet
 
 import "github.com/BeamMW/beam-go/rpc"
 
+type TransactionSpecificationOptions struct {
+	TransactionId *string // can be issued via Client.GenerateTransactionId
+	AssetId *uint64
+	Fee *uint64
+}
+
+func (o *TransactionSpecificationOptions) rpcPrepare() rpc.JsonParams {
+	out := rpc.JsonParams{}
+	if o == nil {
+		return out
+	}
+
+	if o.TransactionId != nil {
+		out["txId"] = *o.TransactionId
+	}
+
+	if o.AssetId != nil {
+		out["asset_id"] = *o.AssetId
+	}
+
+	if o.Fee != nil {
+		out["fee"] = *o.Fee
+	}
+
+	return out
+}
+
 type SendOptions struct {
-	Fee     *uint64 // In groth
+	SpecificationOptions *TransactionSpecificationOptions
 	From    *Address
 	Comment *string
-	TransactionId *string
-	AssetId *uint64 // beam = 0
 }
 
 func (o *SendOptions) rpcPrepare(to Address, groth uint64) rpc.JsonParams {
@@ -20,10 +45,6 @@ func (o *SendOptions) rpcPrepare(to Address, groth uint64) rpc.JsonParams {
 		return params
 	}
 
-	if o.Fee != nil {
-		params["fee"] = *o.Fee
-	}
-
 	if o.From != nil {
 		params["from"] = o.From.Address
 	}
@@ -32,21 +53,11 @@ func (o *SendOptions) rpcPrepare(to Address, groth uint64) rpc.JsonParams {
 		params["comment"] = *o.Comment
 	}
 
-	if o.AssetId != nil {
-		params["asset_id"] = *o.AssetId
-	}
-
-	if o.TransactionId != nil {
-		params["txId"] = *o.TransactionId
-	}
-
-	return params
+	return params.Merge(o.SpecificationOptions.rpcPrepare())
 }
 
 type SplitOptions struct {
-	Fee *uint64 // In groth
-	TransactionId *string
-	AssetId *uint64 // beam = 0
+	TransactionSpecificationOptions
 }
 
 func (o *SplitOptions) rpcPrepare(splits []uint64) rpc.JsonParams {
@@ -58,19 +69,7 @@ func (o *SplitOptions) rpcPrepare(splits []uint64) rpc.JsonParams {
 		return params
 	}
 
-	if o.TransactionId != nil {
-		params["txId"] = *o.TransactionId
-	}
-
-	if o.AssetId != nil {
-		params["asset_id"] = *o.AssetId
-	}
-
-	if o.Fee != nil {
-		params["fee"] = *o.Fee
-	}
-
-	return params
+	return params.Merge(o.TransactionSpecificationOptions.rpcPrepare())
 }
 
 type TransactionListOptions struct {
