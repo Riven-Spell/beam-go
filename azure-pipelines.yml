@@ -1,0 +1,73 @@
+# Go
+# Build your Go project.
+# Add steps that test, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/go
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  GOBIN:  '$(GOPATH)/bin' # Go binaries path
+  GOROOT: '/usr/local/go1.11' # Go installation path
+  GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
+  modulePath: '$(GOPATH)/src/github.com/BeamMW/beam-go' # Path to the module's code
+  nodeBuildPath: $(system.defaultWorkingDirectory)/beam
+  nodeBuildResult: $(system.defaultWorkingDirectory)/beamnode
+  CC: gcc-8
+  CXX: g++-8
+
+steps:
+- script: |
+    mkdir -p '$(GOBIN)'
+    mkdir -p '$(GOPATH)/pkg'
+    mkdir -p '$(modulePath)'
+    shopt -s extglob
+    shopt -s dotglob
+    mv !(gopath) '$(modulePath)'
+    echo '##vso[task.prependpath]$(GOBIN)'
+    echo '##vso[task.prependpath]$(GOROOT)/bin'
+  displayName: 'Set up the workspace'
+
+- script: |
+    go version
+    go get -v -t -d ./...
+  workingDirectory: '$(modulePath)'
+  displayName: 'Pull Go dependencies'
+
+- script: |
+    # pull down dependencies
+    sudo add-apt-repository -y ppa:mhier/libboost-latest
+    sudo apt-get update -y
+    sudo apt-get -y install g++-8 libssl-dev curl wget git make 
+    sudo apt-get -y install libgl1-mesa-dev zlib1g-dev libboost1.67-dev
+  displayName: 'Get beam dependencies'
+
+- task: CMake@1
+  inputs:
+    workingDirectory: $(nodeBuildPath)
+    cmakeArgs: -DCMAKE_BUILD_TYPE=Release
+
+- script: |
+    make
+    cp beam/beam-node-masternet $(nodeBuildResult)
+    cd wallet
+    make
+    cp cli/beam-wallet-masternet $(nodeBuildResult)
+    cp api/wallet-api-masternet $(nodeBuildResult)
+  workingDirectory: $(nodeBuildPath)
+  displayName: 'Build beam node & wallet API'
+
+- script: |
+    # fire up wallet
+    cd beamnode
+    ./beam-node-masternet --storage tmpnode.db --FakePoW 1 &
+    ./beam-wallet-masternet init --pass a
+    ./wallet-api-masternet -p 5000 --use_http 1 -n 127.0.0.1:10000 &
+    cd ..
+    # fire up tests
+    cd $(modulePath)
+    go test
+  displayName: 'Fire up node (with fakePoW) & run tests'
