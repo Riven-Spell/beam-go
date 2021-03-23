@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 type Endpoint interface {
@@ -23,4 +24,27 @@ func (j JsonParams) Merge(params JsonParams) JsonParams {
 	}
 
 	return out
+}
+
+type RequestHeader struct {
+	Jsonrpc string           `json:"jsonrpc"`
+	Id      *json.RawMessage `json:"id"`
+	Method  string           `json:"method"`
+	Params  *json.RawMessage `json:"params"`
+}
+
+type ResponseHeader struct {
+	Jsonrpc string           `json:"jsonrpc"`
+	Id      *json.RawMessage `json:"id"`
+	Result  *json.RawMessage `json:"result"`
+	Error   ResponseError    `json:"error"`
+}
+
+type ResponseError struct {
+	Code int64 `json:"code"`
+	Message string `json:"message"`
+}
+
+func (r ResponseError) Error() string {
+	return fmt.Sprintf("Error code %d: %s", r.Code, r.Message)
 }

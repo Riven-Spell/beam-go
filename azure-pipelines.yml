@@ -24,6 +24,7 @@ steps:
     mkdir -p '$(GOBIN)'
     mkdir -p '$(GOPATH)/pkg'
     mkdir -p '$(modulePath)'
+    mkdir -p '$(nodeBuildResult)'
     shopt -s extglob
     shopt -s dotglob
     mv !(gopath) '$(modulePath)'
@@ -52,11 +53,11 @@ steps:
 
 - script: |
     make
-    cp beam/beam-node-masternet $(nodeBuildResult)
+    cp beam/beam-node-masternet '$(nodeBuildResult)'
     cd wallet
     make
-    cp cli/beam-wallet-masternet $(nodeBuildResult)
-    cp api/wallet-api-masternet $(nodeBuildResult)
+    cp cli/beam-wallet-masternet '$(nodeBuildResult)'
+    cp api/wallet-api-masternet '$(nodeBuildResult)'
   workingDirectory: $(nodeBuildPath)
   displayName: 'Build beam node & wallet API'
 
@@ -65,9 +66,10 @@ steps:
     cd beamnode
     ./beam-node-masternet --storage tmpnode.db --FakePoW 1 &
     ./beam-wallet-masternet init --pass a
-    ./wallet-api-masternet -p 5000 --use_http 1 -n 127.0.0.1:10000 &
+    ./wallet-api-masternet -p 5000 --use_http 1 -n 127.0.0.1:10000 --pass a &
     cd ..
     # fire up tests
     cd $(modulePath)
+    export WALLET_ENDPOINT=http://127.0.0.1:5000/api/wallet
     go test
   displayName: 'Fire up node (with fakePoW) & run tests'

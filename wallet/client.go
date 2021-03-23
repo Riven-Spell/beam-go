@@ -20,8 +20,10 @@ func (c *Client) basicRequest(method string, params interface{}, unmarshalTo int
 		return
 	}
 
-	if unmarshalTo != nil {
-		err = json.Unmarshal(*rawResp, unmarshalTo)
+	if rawResp != nil {
+		if unmarshalTo != nil {
+			err = json.Unmarshal(*rawResp, unmarshalTo)
+		}
 	}
 
 	return

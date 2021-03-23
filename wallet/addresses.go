@@ -37,19 +37,21 @@ func (c *Client) CreateAddress(createAddressOptions *CreateAddressOptions) (a Ad
 		IsOwned: true,
 	}
 
-	if createAddressOptions.Comment != nil {
-		a.Comment = *createAddressOptions.Comment
-	}
-
-	if createAddressOptions.Expiration != nil {
-		switch *createAddressOptions.Expiration {
-		case Expiration24h:
-			a.Duration = int64(time.Hour * 24 / time.Second)
-		case ExpirationAuto:
-			a.Duration = int64(time.Hour * 24 * 61)
+	if createAddressOptions != nil {
+		if createAddressOptions.Comment != nil {
+			a.Comment = *createAddressOptions.Comment
 		}
-	} else {
-		a.Duration = int64(time.Hour * 24 / time.Second)
+
+		if createAddressOptions.Expiration != nil {
+			switch *createAddressOptions.Expiration {
+			case Expiration24h:
+				a.Duration = int64(time.Hour * 24 / time.Second)
+			case ExpirationAuto:
+				a.Duration = int64(time.Hour * 24 * 61 / time.Second)
+			}
+		} else {
+			a.Duration = int64(time.Hour * 24 / time.Second)
+		}
 	}
 
 	return
@@ -57,14 +59,14 @@ func (c *Client) CreateAddress(createAddressOptions *CreateAddressOptions) (a Ad
 
 func (c *Client) ValidateAddress(a Address) (valid, owner bool, err error) {
 	var output struct {
-		valid bool `json:"is_valid"`
-		owned bool `json:"is_mine"`
+		Valid bool `json:"is_valid"`
+		Owned bool `json:"is_mine"`
 	}
 	if err = c.basicRequest("validate_address", rpc.JsonParams{ "address" : a.Address }, &output); err != nil {
 		return
 	}
 
-	return output.valid, output.owned, err
+	return output.Valid, output.Owned, err
 }
 
 func (c *Client) ListAddresses(ownedOnly bool) (addresses []Address, err error) {

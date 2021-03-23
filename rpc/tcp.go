@@ -21,7 +21,7 @@ func (endpoint *TCPEndpoint) RPCExecute(method string, params interface{}) (res 
 	rawId := json.RawMessage(`"tcp-dummy"`)
 	rawParams := json.RawMessage(pbytes)
 
-	request := jsonrpc.RequestHeader{
+	request := RequestHeader{
 		Jsonrpc: "2.0",
 		Id:      &rawId,
 		Method:  method,
@@ -49,12 +49,17 @@ func (endpoint *TCPEndpoint) RPCExecute(method string, params interface{}) (res 
 		return
 	}
 
-	var rpcr jsonrpc.ResponseHeader
+	var rpcr ResponseHeader
 	if err = json.Unmarshal(body, &rpcr); err != nil {
 		return
 	}
 
 	res = rpcr.Result
+
+	if rpcr.Error != (ResponseError{}) {
+		err = rpcr.Error
+	}
+
 	return
 }
 
