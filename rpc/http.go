@@ -12,7 +12,7 @@ import (
 // thus, it's just not worth bothering with.
 type HTTPEndpoint struct {
 	Endpoint string
-	Transport *http.Transport // specify a custom HTTP transport to be used, or leave at nil for default transport
+	Transport http.RoundTripper // specify a custom HTTP transport to be used, or leave at nil for default transport
 }
 
 func (endpoint *HTTPEndpoint) RPCExecute(method string, params interface{}) (res *json.RawMessage, err error) {

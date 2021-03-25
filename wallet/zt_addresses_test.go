@@ -3,16 +3,30 @@ package wallet_test
 import (
 	"github.com/BeamMW/beam-go/to"
 	"github.com/BeamMW/beam-go/wallet"
+	"github.com/dnaeon/go-vcr/recorder"
 	chk "gopkg.in/check.v1"
 	"time"
 )
 
-type addressSuite struct{}
+type addressSuite struct{
+	recorder *recorder.Recorder
+}
 
 var _ = chk.Suite(&addressSuite{})
 
-func (*addressSuite) TestNewAddress(c *chk.C) {
-	client := GetWalletClient(c)
+func (s *addressSuite) SetUpSuite(c *chk.C) {
+	var err error
+	s.recorder, err = recorder.New("recordings/addresses")
+
+	c.Assert(err, chk.IsNil)
+}
+
+func (s *addressSuite) TearDownSuite(c *chk.C) {
+	c.Assert(s.recorder.Stop(), chk.IsNil)
+}
+
+func (s *addressSuite) TestNewAddress(c *chk.C) {
+	client := GetWalletClient(c, s.recorder)
 
 	// Test a no-frills address generation.
 	address, err := client.CreateAddress(nil)
@@ -32,10 +46,10 @@ func (*addressSuite) TestNewAddress(c *chk.C) {
 	c.Assert(address.Duration, chk.Equals, int64(time.Hour * 24 * 61 / time.Second))
 }
 
-func (*addressSuite) TestValidateAddress(c *chk.C) {
+func (s *addressSuite) TestValidateAddress(c *chk.C) {
 	// try validating some keyboard spam junk.
 	address := wallet.Address{Address: "saoeutsaotnh uaoestnh sanoht snaotheu "}
-	client := GetWalletClient(c)
+	client := GetWalletClient(c, s.recorder)
 
 	valid, owner, err := client.ValidateAddress(address)
 
@@ -63,9 +77,9 @@ func (*addressSuite) TestValidateAddress(c *chk.C) {
 	c.Assert(owner, chk.Equals, true)
 }
 
-func (*addressSuite) TestListAddresses(c *chk.C) {
+func (s *addressSuite) TestListAddresses(c *chk.C) {
 	// Generate an address with some special properties, and check those.
-	client := GetWalletClient(c)
+	client := GetWalletClient(c, s.recorder)
 
 	const addressComment = "Hello world!"
 

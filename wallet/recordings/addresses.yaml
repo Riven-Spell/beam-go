@@ -1,0 +1,157 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{"comment":"Hello
+      world!"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"2d5917046fd43ebb6d50a553627a808e47c6a766188e4c7b916095f269b71e0345f"}
+    headers:
+      Content-Length:
+      - "115"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"addr_list","params":{"own":true}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":[{"address":"2d5917046fd43ebb6d50a553627a808e47c6a766188e4c7b916095f269b71e0345f","category":"","comment":"Hello world!","create_time":1616657743,"duration":5270400,"expired":false,"identity":"19905a44343cf4a674dcfc75de1e21e588f253f6f10f6402e3e6d827bacbd877","own":true,"own_id":1616237752000052,"own_id_str":"1616237752000052"},{"address":"10d1499b94b19276d0d0b6b5c3a6a0c513751588ea09247dd4ae178e3464beb3a7e","category":"","comment":"","create_time":1616657702,"duration":5270400,"expired":false,"identity":"2822bbabdfd79385a95cba182c106b6ef8acf7394fc5a3070ff3d46d355f2bdc","own":true,"own_id":1616237752000051,"own_id_str":"1616237752000051"},{"address":"1b09b57be73ad45fdb08eeb3974bfaa08640e57260bc31f731b01009a17efe67362","category":"","comment":"Hello world!","create_time":1616657702,"duration":5270400,"expired":false,"identity":"7302ed873d15de6a85e8e254bd1f462b08384d55f044129f22aea1e9af816c5f","own":true,"own_id":1616237752000048,"own_id_str":"1616237752000048"},{"address":"213ceb8efe07f108613314b364b392d5cbeb6963bfe88a93e303bd6d558a07143ac","category":"","comment":"owo","create_time":1616657702,"duration":5270400,"expired":false,"identity":"7867d5d62f120ebac72e7328e20942de69199d75946a934a211546bc97eb883a","own":true,"own_id":1616237752000050,"own_id_str":"1616237752000050"},{"address":"3deebd919dc07bdafde1a52ca0f117d194d94f42c66381485e6024b41ad7e273204","category":"","comment":"","create_time":1616657702,"duration":5270400,"expired":false,"identity":"a1c0a5303ec23b5763d029949f9888378644ac70fe07d404767828c0fa00c9c4","own":true,"own_id":1616237752000049,"own_id_str":"1616237752000049"},{"address":"399f1c73804bd838b997bba2ab2479877ea1afa441d95fa827ca9271453f84eff03","category":"","comment":"","create_time":1616657344,"duration":5270400,"expired":false,"identity":"cb715ce42421b037d612a1aa51c125c0982c14ba672126e0847d88c383479fdb","own":true,"own_id":1616237752000046,"own_id_str":"1616237752000046"},{"address":"3bee92455970682d7bed180fbbde5e194f23a3852dc4e0d7ad129905b8080b62acc","category":"","comment":"owo","create_time":1616657344,"duration":5270400,"expired":false,"identity":"dcd402d59c09b0c978801a4a91ee1f5cbb25ebbb5947a1321930a1e61a33ab54","own":true,"own_id":1616237752000047,"own_id_str":"1616237752000047"},{"address":"19ed5d821bbd391d59edfdc33f0622ead20cc1e4592aadd5faf689cb7dfb99bc333","category":"","comment":"Hello world!","create_time":1616657281,"duration":5270400,"expired":false,"identity":"69ab1799bd0b2f7b4adcf846697721558dfc050a328f7e95a094ac4a51490d4e","own":true,"own_id":1616237752000042,"own_id_str":"1616237752000042"},{"address":"24a32c1c18a89e5424a0269b8a830ccaed37f777a23f08a846b07ba5bf0cac4edc1","category":"","comment":"","create_time":1616657281,"duration":5270400,"expired":false,"identity":"9f06a6f694d7a2ff3409f050669229ca737757ea9c8f2562a9e92ee064df78de","own":true,"own_id":1616237752000045,"own_id_str":"1616237752000045"},{"address":"27d39758c1b8610467d8c87e4c334360da029b41fbe9fb53e40203835aa7a0d25e8","category":"","comment":"","create_time":1616657281,"duration":5270400,"expired":false,"identity":"154b809cac8a80de3f602d2af78b0384b8f5150e23925932411ba5037ad5a314","own":true,"own_id":1616237752000043,"own_id_str":"1616237752000043"},{"address":"30f320d76011f041b0ff4909171f049a104fcf7a65d48dfedc3ed0454dbfa93282b","category":"","comment":"owo","create_time":1616657281,"duration":5270400,"expired":false,"identity":"9b442ba5afc8686b3321864bce5b6c2ef32b5ce8dfccdabe0f86203490d6d784","own":true,"own_id":1616237752000044,"own_id_str":"1616237752000044"},{"address":"185002526ab994ab9857b9725280c774fcb44af69dedeebced49d4a7c9eca7bbf9c","category":"","comment":"","create_time":1616657260,"duration":5270400,"expired":false,"identity":"3f35c718f158d27f179fab57580ff2b1b86bfc9cfb04e4a5f4543ba87cb5577f","own":true,"own_id":1616237752000040,"own_id_str":"1616237752000040"},{"address":"304e0c4f8f89b945b04bc62ae5578e6bb210c42c3212be76e8c2f0eded66880fe23","category":"","comment":"owo","create_time":1616657260,"duration":5270400,"expired":false,"identity":"94ff05cb16b5864402691a40ae1d65c2ba5043d47e8d8e7a92b9ff2c766849d1","own":true,"own_id":1616237752000041,"own_id_str":"1616237752000041"},{"address":"20b66f94255187ace0b5b517a34642d039edf4e35b221e56e7bbcce9475f9204c16","category":"","comment":"","create_time":1616657254,"duration":5270400,"expired":false,"identity":"1a7270242a5e00337ef5a7cbde16dc36f5cec4b7acfcf60abe776f413cc755ec","own":true,"own_id":1616237752000038,"own_id_str":"1616237752000038"},{"address":"22880f0ce4fbac1ae28c213671e89ae1be867215fc03ee4be8436f3da25544636de","category":"","comment":"owo","create_time":1616657254,"duration":5270400,"expired":false,"identity":"3b5b11c3eebeb555e4879a1f8c48d3b7d55d1b094f3c9708f027c5f7583aa015","own":true,"own_id":1616237752000039,"own_id_str":"1616237752000039"},{"address":"13ee85e5a4c7fb6e13ed5f5ef2b24b765cfd3103d70242fa7c44d845333d49d7393","category":"","comment":"owo","create_time":1616657212,"duration":5270400,"expired":false,"identity":"25da181a26d4781fe7d28caf88e6a6ef10925ee5161463e72e9a4203ddfabab2","own":true,"own_id":1616237752000037,"own_id_str":"1616237752000037"},{"address":"297f45290b5a20ea297115207719e25f5860b0590a9a09834fa838dcc7d95c5d3d6","category":"","comment":"","create_time":1616657212,"duration":5270400,"expired":false,"identity":"f48dc2f36812bd468877dd75d7f3b79970bcdd1bcbc6023eafe257718442557e","own":true,"own_id":1616237752000036,"own_id_str":"1616237752000036"},{"address":"30568776a5fd05d6f055d17a8715203b2df5a13ca46162d5a5c4d857eebdb3eade4","category":"","comment":"","create_time":1616656638,"duration":5270400,"expired":false,"identity":"23219fff240dab74be53b49966bbfc7180f9c3fff9f37eeee399764fb07a29d0","own":true,"own_id":1616237752000033,"own_id_str":"1616237752000033"},{"address":"36fa27817e88c67776f1c5c132b1ba7c02006ce81ff2d12c4fe21a2e2baae8f8d70","category":"","comment":"owo","create_time":1616656638,"duration":5270400,"expired":false,"identity":"63c968ab10503862e9ace3a3eff233de018b629e8e573dec53226100499df23e","own":true,"own_id":1616237752000034,"own_id_str":"1616237752000034"},{"address":"3a51bb74f20426677a5d052506e8f598fc70994c8c6fc73f41a26e2844d9a09d759","category":"","comment":"Hello world!","create_time":1616656638,"duration":5270400,"expired":false,"identity":"bec0600b63e86dc57d2389b1921c692f6439fb78f1b5f044112fc63e28d6b3b0","own":true,"own_id":1616237752000032,"own_id_str":"1616237752000032"},{"address":"a372716f0bf194c0a2f6881f4f1855ef766008d5c31549773ec3dd68486cf346c","category":"","comment":"","create_time":1616656638,"duration":5270400,"expired":false,"identity":"73a04d2c2275c4e66ac8f78545ed6470f30d0d353f4f4fa68be1a417d3b30e8d","own":true,"own_id":1616237752000035,"own_id_str":"1616237752000035"},{"address":"15e6d833e4a9398655ede33572a1ba505df9585922faf0349047d921936b75e4588","category":"","comment":"Hello world!","create_time":1616656620,"duration":5270400,"expired":false,"identity":"657fa300d7ec009397d4ddd918ba9ceec600cf57030e1c74eb38a6f44f04b3c6","own":true,"own_id":1616237752000028,"own_id_str":"1616237752000028"},{"address":"19c4f8322598193c99cd6f3e83b2cde56ff16947946c19ae526ee26dcc0b83ce928","category":"","comment":"","create_time":1616656620,"duration":5270400,"expired":false,"identity":"1122ce69344abfa225691477007127295205cf5ecd6d800ef25b17de5eb5c2ff","own":true,"own_id":1616237752000031,"own_id_str":"1616237752000031"},{"address":"2cd90421e01bf69b2cd52db3f0c80c56ea39e2c2a53606ae8a4717fa41927f218a6","category":"","comment":"owo","create_time":1616656620,"duration":5270400,"expired":false,"identity":"29b06f753ee8ab529f852a27c9c4380a39222d58d2d3792998d8215602f11727","own":true,"own_id":1616237752000030,"own_id_str":"1616237752000030"},{"address":"2ef1923feda19fab6efb3a71b8b9a3e852a040eac8f1d2b688ba6f24eaabb7ab3e5","category":"","comment":"","create_time":1616656620,"duration":5270400,"expired":false,"identity":"b2a0ed8d07819a2faa4b5ae76b2efdf60d398f88612fe8d72eeb5e0b3f79d2ed","own":true,"own_id":1616237752000029,"own_id_str":"1616237752000029"},{"address":"2a3f7a2970a1522b2a34ce5af1f5ca89b4d8209d2d292feb00a361184161351f573","category":"","comment":"Hello world!","create_time":1616505704,"duration":5270400,"expired":false,"identity":"35344273f44fcbde4a1415a20309cc6eaec38bf31a12c2bcc8a6b27dfb927497","own":true,"own_id":1616237752000027,"own_id_str":"1616237752000027"},{"address":"3c7d76d2a6761b2efc792be628b8fdf2b5c80c8db920b053aed1a6540ae4c31b7d9","category":"","comment":"Hello world!","create_time":1616505618,"duration":5270400,"expired":false,"identity":"9183be1bc2a1412000b92875462b4e056005e32d286a58b8394952e335c57a3e","own":true,"own_id":1616237752000026,"own_id_str":"1616237752000026"},{"address":"603bcba014e50c7060f5418e2218ef02243e7573cc8bc3542035a27e6fe92da51f","category":"","comment":"Hello world!","create_time":1616505228,"duration":5270400,"expired":false,"identity":"f51201e498abb617c273821c366e252f69100c5b3205de362d78c2a074a00289","own":true,"own_id":1616237752000025,"own_id_str":"1616237752000025"},{"address":"1486d28b03b9e41ad48966618b6585d3eddd0aef30e30224207b0d1b74ae4e6208a","category":"","comment":"","create_time":1616504591,"duration":5270400,"expired":false,"identity":"b5f9e0e7c6936ead358a555fe77ee3a1cf152310a47269f96eed4640509fb626","own":true,"own_id":1616237752000024,"own_id_str":"1616237752000024"},{"address":"84f8815df9f65aec84ecc227a44b4a912bb14e5a7a19dec44b0b7606bf5f3e7256","category":"","comment":"","create_time":1616504572,"duration":5270400,"expired":false,"identity":"211109627724814c36b981ac4bd4b792e8b0cd1c26a893c2275476d38c932b6b","own":true,"own_id":1616237752000023,"own_id_str":"1616237752000023"},{"address":"3551ffe49a86c1a6755c445a184adc931ebf6ce1e9dd9e9c23f99aeea600968a79d","category":"","comment":"owo","create_time":1616504493,"duration":5270400,"expired":false,"identity":"acf53de43b8354e1d29bf80c93764c1ed38f360e44e4767f4295760a9da8fce3","own":true,"own_id":1616237752000022,"own_id_str":"1616237752000022"},{"address":"c921c0a4d24ae550c9e617f796789127775876df013cd78bc54fbcfe6a53af12b5","category":"","comment":"","create_time":1616504493,"duration":5270400,"expired":false,"identity":"505739281e4f9d9c9e5b2617ed7b136f98765172e931162a7c216f57b6eb793f","own":true,"own_id":1616237752000021,"own_id_str":"1616237752000021"},{"address":"43d5c61c716c065443a79a3eac415b348f7e7609bfd071d0534bee48de4bd084c7","category":"","comment":"","create_time":1616504394,"duration":5270400,"expired":false,"identity":"3bce5e92614d4ac49d9094f7985d81ad675039c14c6a662107440c1ab3ee385f","own":true,"own_id":1616237752000020,"own_id_str":"1616237752000020"},{"address":"3412b6098594be87b4173cd73593a72e4ff9080328c9fd66409463de0fab73eed0b","category":"","comment":"","create_time":1616504017,"duration":5270400,"expired":false,"identity":"19b784eb3914dde2b39c2e845c06fb4f8491a053445be289b0eb956c43e77274","own":true,"own_id":1616237752000019,"own_id_str":"1616237752000019"},{"address":"3cd13a6e35c65277fcd50032503992a8159f3e5ec2fe938f4e2966c21767cba2915","category":"","comment":"","create_time":1616503798,"duration":5270400,"expired":false,"identity":"f72d9fd232d61d4918a08490d0f537b40154ca1b941692d318c1d7e1467f959a","own":true,"own_id":1616237752000018,"own_id_str":"1616237752000018"},{"address":"fce5ed8c8e37ca38fc705aea21c5cc4a6c6a017dc01a5e1b55184f495aa139d8f8","category":"","comment":"","create_time":1616503783,"duration":5270400,"expired":false,"identity":"1aee084972c4cc907e495f3f5a352b9108eeae3590a00f54e4da3efdf3481014","own":true,"own_id":1616237752000017,"own_id_str":"1616237752000017"},{"address":"2997f3b839a36918299bbb6551349c8d00561cfc7f96025b89bafb68267d71e446b","category":"","comment":"","create_time":1616503761,"duration":5270400,"expired":false,"identity":"9365cf77f925135db72d77a058ae1750ea0bcb55cfa8c32f817e3a946b8fd7b8","own":true,"own_id":1616237752000016,"own_id_str":"1616237752000016"},{"address":"2a2bd32bec969b43aa2ad8d3b1f25f65c399641bd85a3167f3b3bba98130fd7d9f8","category":"","comment":"","create_time":1616503551,"duration":5270400,"expired":false,"identity":"6ce965692128c59ba72591476fa16794585a6ebe9670c107f23406373e0b19f8","own":true,"own_id":1616237752000015,"own_id_str":"1616237752000015"},{"address":"e694fffe2bb4400009a88fcc3632cc86f333a5ca39eb23a6a9b9fec282772cdf","category":"","comment":"","create_time":1616503538,"duration":5270400,"expired":false,"identity":"3d104eeb974b4d2be7a0be8dc6a4b41afa80b420ebc375c93c50781614ef84ca","own":true,"own_id":1616237752000014,"own_id_str":"1616237752000014"},{"address":"48afe96e263af058482212bb0570c9e8a4ed4f4d9463b15b644e1c334a69fa7f60","category":"","comment":"","create_time":1616503508,"duration":5270400,"expired":false,"identity":"797453ce2c7b48ba5876c04c7610c53c1f3f6d98b664d204cfc48557ed7b8d17","own":true,"own_id":1616237752000013,"own_id_str":"1616237752000013"},{"address":"1a9e95c8e047316cda980469d43ceb17f4aae64d795253c80c0153e8ed396cec0e3","category":"","comment":"","create_time":1616503481,"duration":5270400,"expired":false,"identity":"4af7b03b8b5f68b4ec0dfe65a7cfeb6ec49e865a3aaeaa4f7e4b856abc9be4c","own":true,"own_id":1616237752000012,"own_id_str":"1616237752000012"},{"address":"1615182ef029fd525619fcf9dbaeb135927c5d93ff355542aca85334f182ec4733c","category":"","comment":"","create_time":1616503370,"duration":5270400,"expired":false,"identity":"d90a26151fc376b0be62a612f27bd042a98e6cd421a344392784b1019666cadc","own":true,"own_id":1616237752000011,"own_id_str":"1616237752000011"},{"address":"1e0cdb627bdf1c4c5e0e1a80a2db13120ebce1d412c35578897ecca394d5353258e","category":"","comment":"owo","create_time":1616503242,"duration":5270400,"expired":false,"identity":"48fcb7dcf2ac3157ed1969914b1d126b61afc8a0b3853d3969af43f02f4924e2","own":true,"own_id":1616237752000010,"own_id_str":"1616237752000010"},{"address":"3d7242e2d6aa5cd13d7ce44f662d2807518fbda320f8b7581a0b7b6ddd0ddb28341","category":"","comment":"","create_time":1616503242,"duration":5270400,"expired":false,"identity":"8850ad4fd48603f589bfd0a15dd89146b90dea151c0af82a3c4dd60e25981254","own":true,"own_id":1616237752000009,"own_id_str":"1616237752000009"},{"address":"3667923fd8952544b66e078af7ea1b97cfeb75728d0db02f9e3058955ecca7bb191","category":"","comment":"","create_time":1616503164,"duration":5270400,"expired":false,"identity":"bbebd2a555d23ea168f65a5e2d1ef1c99ea294a41465415210f9e1deb50d7b43","own":true,"own_id":1616237752000008,"own_id_str":"1616237752000008"},{"address":"32c7ebc6ab2a7792f2cc3dff0a6826b3dd7fcba319bc3f3f1df6bb10aec061c58bb","category":"","comment":"","create_time":1616503135,"duration":5270400,"expired":false,"identity":"9af136e2e24f42778c742216fc444f218ead5d82180620b9fc25cb8d556819cf","own":true,"own_id":1616237752000007,"own_id_str":"1616237752000007"},{"address":"19f400a248ef70fe19f6d6b4d0c36b0330f9dfae12e5efa3dcc3ad9a0dad0ad19ce","category":"","comment":"","create_time":1616503104,"duration":5270400,"expired":false,"identity":"6cf12715e3d70df2f18221bc9193fecf85a92b21560313e6d93f2542b8dcf694","own":true,"own_id":1616237752000006,"own_id_str":"1616237752000006"},{"address":"d553327d293581f0d5e77bcf7b8502ea1035a0298c4c2a930f46a83a5ad96a42d0","category":"","comment":"","create_time":1616502953,"duration":5270400,"expired":false,"identity":"cd3c01314dc396f8e7128587b428f831f46ad11359090fdebb27ea0e43449209","own":true,"own_id":1616237752000005,"own_id_str":"1616237752000005"},{"address":"2d7742fcebc807706d7d77f022d2ea8dbac1578e6fd2e358dd893214015290395e0","category":"","comment":"","create_time":1616502855,"duration":5270400,"expired":false,"identity":"c6a00b5268450fff10f82bee8ba9a03001d0ed0e8f8e82c6a36af00568b27243","own":true,"own_id":1616237752000004,"own_id_str":"1616237752000004"},{"address":"31b955a1b46951a871bda0bd2c282010907e8aa9148eff87be4a9630c612d1ba451","category":"","comment":"","create_time":1616502844,"duration":5270400,"expired":false,"identity":"6109339944312b2e4c7dfd6a8934c014b17bee4535ef61c8e9c338f7859f5b5e","own":true,"own_id":1616237752000003,"own_id_str":"1616237752000003"},{"address":"24a9550e7bf7404c24f181a365f207c931c884a93a550ce53448e981a895afbfad","category":"","comment":"","create_time":1616502260,"duration":5270400,"expired":false,"identity":"d630f179ba3fd57db518c6bfb0d20535a0f5bd435ef718bcf7a80f68c5571e33","own":true,"own_id":1616237752000002,"own_id_str":"1616237752000002"},{"address":"35c3d32bf95b37dd75c2adce53a04d7979dbcdaef1f9c25c37f210b86c1e37cb0ed","category":"","comment":"","create_time":1616502105,"duration":5270400,"expired":false,"identity":"283f593ba73ed6f455a6c2afb14f8b76d55032ef896de991125dc6058d73d20b","own":true,"own_id":1616237752000001,"own_id_str":"1616237752000001"},{"address":"e35ba906d3514cd8e3aebc7a0279568dc2bcefe717a7fc09ea7fc7d926477a4b69","category":"","comment":"default","create_time":1616237752,"duration":5270400,"expired":false,"identity":"3d1b228a99ff3d6b68778adfc60117d471ef8d621f252cbb7b3edc2e53c67c79","own":true,"own_id":1616237752000000,"own_id_str":"1616237752000000"}]}
+    headers:
+      Content-Length:
+      - "16913"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"3cbaf2eb90b807843c90f79de650d4651a6e6dd7ae755219c1f32ae664706aab94"}
+    headers:
+      Content-Length:
+      - "114"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{"comment":"owo","expiration":"auto","type":"regular_new"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"8NmCQLhTTk2P7XeFZrHe1SNv83MpnfQmnYSLwLFCi3pqcpFKHDEvbba9shyxaK5RKCLgjqoDfphmQdtf7A37Zg6AtA7AYyU51HDszrQA7iMSbJRddkUS6QNFn3dVdkuCz6LwgYFVsiXup"}
+    headers:
+      Content-Length:
+      - "189"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"validate_address","params":{"address":"saoeutsaotnh
+      uaoestnh sanoht snaotheu "}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"is_mine":false,"is_valid":false}}
+    headers:
+      Content-Length:
+      - "80"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"validate_address","params":{"address":"11437de1b63c3db491460a6077423b5add63ba582cb2aa5eb9e157f4d91ddc56ea5"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"is_mine":false,"is_valid":true}}
+    headers:
+      Content-Length:
+      - "79"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"b9711718ecbede48b9606ff5fc9e00b2a9a9030cf2f017e9c7e249fb284646ecb0"}
+    headers:
+      Content-Length:
+      - "114"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"validate_address","params":{"address":"b9711718ecbede48b9606ff5fc9e00b2a9a9030cf2f017e9c7e249fb284646ecb0"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"is_mine":true,"is_valid":true}}
+    headers:
+      Content-Length:
+      - "78"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
