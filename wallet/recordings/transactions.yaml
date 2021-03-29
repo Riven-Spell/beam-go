@@ -1,0 +1,421 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"calc_change","params":{"amount":50000000,"asset_id":0,"fee":100,"is_push_transaction":true}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_change":48999900,"asset_change_str":"48999900","change":48999900,"change_str":"48999900","explicit_fee":1000100,"explicit_fee_str":"1000100"}}
+    headers:
+      Content-Length:
+      - "195"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839"}
+    headers:
+      Content-Length:
+      - "114"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":true}
+    headers:
+      Content-Length:
+      - "50"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","create_time":1616984526,"fee":100,"income":false,"receiver":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839","sender":"3e28b06807104d2a3e2b012d8d8b031760033e8ac39e0188c1156c507bcc737dbfd","status":2,"status_string":"cancelled","txId":"5fe89f7abc114390b1d64f24aed7817f","tx_type":0,"tx_type_string":"simple","value":100000000}}
+    headers:
+      Content-Length:
+      - "419"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"2b2727b66b9ca8a8ab2414758723737c87bf13c1306638be140981952ca10f0080d"}
+    headers:
+      Content-Length:
+      - "115"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"2b2727b66b9ca8a8ab2414758723737c87bf13c1306638be140981952ca10f0080d","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":true}
+    headers:
+      Content-Length:
+      - "50"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_delete","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":true}
+    headers:
+      Content-Length:
+      - "50"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"error":{"code":-32602,"data":"Unknown transaction ID.","message":"Invalid parameters."},"id":"http-dummy","jsonrpc":"2.0"}
+    headers:
+      Content-Length:
+      - "125"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"24d4261035ce74cee4dd868bd0990b5333ce6a7f1cef6bea16a7c740f3b5e56ca6b"}
+    headers:
+      Content-Length:
+      - "115"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"generate_tx_id","params":null}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"4359c4b2f5f044019d5de470b78a8eb7"}
+    headers:
+      Content-Length:
+      - "80"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"24d4261035ce74cee4dd868bd0990b5333ce6a7f1cef6bea16a7c740f3b5e56ca6b","txId":"4359c4b2f5f044019d5de470b78a8eb7","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"4359c4b2f5f044019d5de470b78a8eb7"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc"}
+    headers:
+      Content-Length:
+      - "114"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"b5a6c8bc816345de850ca2b34d332d07"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"export_payment_proof","params":{"txId":"b5a6c8bc816345de850ca2b34d332d07"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"payment_proof":"01a2a997c74f52e718a2e3c4ff5ab2c0990286a98e3276e694100c9ac7c63602674b01fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc0400e1f505e422efd119fa8c1ef6fd72bf9905b5e54dc9b5b30fc1d151e325410a201f1d484434b0609fa5b929c3a8bf8a74520d9e0fad181a984056a14c2f754851ea1a3901d3cab3272db49d9b8c14470f15ff66c17548b63ef38f9d2ce5bebc829523d419"}}
+    headers:
+      Content-Length:
+      - "406"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"verify_payment_proof","params":{"payment_proof":"b5a6c8bc816345de850ca2b34d332d07"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"error":{"code":-32006,"data":"Failed to parse","message":"Invalid payment proof provided"},"id":"http-dummy","jsonrpc":"2.0"}
+    headers:
+      Content-Length:
+      - "128"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378"}
+    headers:
+      Content-Length:
+      - "115"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"b6595db690ad4090bb839dc63adb7dc9"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"b6595db690ad4090bb839dc63adb7dc9"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:6000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","confirmations":0,"create_time":1616984561,"fee":100,"height":405,"income":true,"kernel":"8b2957a5358d37cdf727b7a74987f8e65b1d9d2ab9717a63a16d05a55af0b56e","receiver":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378","sender":"fba4de7cb773a2c0f7a5c309441619a12bf60292270f9296f633927ac47434934","status":3,"status_string":"received","txId":"b6595db690ad4090bb839dc63adb7dc9","tx_type":0,"tx_type_string":"simple","value":100000000}}
+    headers:
+      Content-Length:
+      - "523"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_split","params":{"coins":[100000000,100000000]}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"7d2496881a5f471cac22d356b0d3b643"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"wallet_status","params":null}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"available":3359600000100,"current_height":422,"current_state_hash":"febe9146a1fb23dbca0e9df8fe2b93898f7ad389bd8eca0f26b7d38ed212fc1e","difficulty":3673.9669189453125,"maturing":15899999900,"prev_state_hash":"225a8683ae3d287b5a23db992657456f98423ab13ec3657c7aa434fac438ce16","receiving":0,"sending":0}}
+    headers:
+      Content-Length:
+      - "348"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""

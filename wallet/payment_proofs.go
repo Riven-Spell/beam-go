@@ -3,9 +3,9 @@ package wallet
 import "github.com/BeamMW/beam-go/rpc"
 
 func (c *Client) ExportPaymentProof(transactionId string) (paymentProof string, err error) {
-	var resp struct { paymentProof string `json:"payment_proof"` }
+	var resp struct { PaymentProof string `json:"payment_proof"` }
 	err = c.basicRequest("export_payment_proof", rpc.JsonParams{"txId": transactionId}, &resp)
-	return resp.paymentProof, err
+	return resp.PaymentProof, err
 }
 
 type VerifyProofResponse struct {

@@ -26,7 +26,7 @@ func (s *addressSuite) TearDownSuite(c *chk.C) {
 }
 
 func (s *addressSuite) TestNewAddress(c *chk.C) {
-	client := GetWalletClient(c, s.recorder)
+	client := GetWalletClient(c, s.recorder, true)
 
 	// Test a no-frills address generation.
 	address, err := client.CreateAddress(nil)
@@ -49,7 +49,7 @@ func (s *addressSuite) TestNewAddress(c *chk.C) {
 func (s *addressSuite) TestValidateAddress(c *chk.C) {
 	// try validating some keyboard spam junk.
 	address := wallet.Address{Address: "saoeutsaotnh uaoestnh sanoht snaotheu "}
-	client := GetWalletClient(c, s.recorder)
+	client := GetWalletClient(c, s.recorder, true)
 
 	valid, owner, err := client.ValidateAddress(address)
 
@@ -79,7 +79,7 @@ func (s *addressSuite) TestValidateAddress(c *chk.C) {
 
 func (s *addressSuite) TestListAddresses(c *chk.C) {
 	// Generate an address with some special properties, and check those.
-	client := GetWalletClient(c, s.recorder)
+	client := GetWalletClient(c, s.recorder, true)
 
 	const addressComment = "Hello world!"
 
@@ -98,6 +98,40 @@ func (s *addressSuite) TestListAddresses(c *chk.C) {
 			//c.Assert(v.Duration, chk.Equals, address.Duration) // don't check expiry
 			c.Assert(v.Comment, chk.Equals, address.Comment)
 			c.Assert(v.IsOwned, chk.Equals, true)
+		}
+	}
+}
+
+func (s *addressSuite) TestDeleteAddress(c *chk.C) {
+	client := GetWalletClient(c, s.recorder, true)
+
+	address, err := client.CreateAddress(nil)
+	c.Assert(err, chk.IsNil)
+
+	err = client.DeleteAddress(address)
+	c.Assert(err, chk.IsNil)
+
+	addresses, err := client.ListAddresses(true)
+
+	for _,v := range addresses {
+		c.Assert(v.Address, chk.Not(chk.Equals), address.Address)
+	}
+}
+
+func (s *addressSuite) TestEditAddress(c *chk.C) {
+	client := GetWalletClient(c, s.recorder, true)
+
+	address, err := client.CreateAddress(&wallet.CreateAddressOptions{ Comment: to.StringPtr("foo") })
+	c.Assert(err, chk.IsNil)
+
+	err = client.EditAddress(address, wallet.EditAddressOptions{Comment: to.StringPtr("bar")})
+	c.Assert(err, chk.IsNil)
+
+	addresses, err := client.ListAddresses(true)
+
+	for _,v := range addresses {
+		if v.Address == address.Address {
+			c.Assert(v.Comment, chk.Equals, "bar")
 		}
 	}
 }

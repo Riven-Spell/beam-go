@@ -3,15 +3,15 @@ package wallet
 import "github.com/BeamMW/beam-go/rpc"
 
 func (c *Client) Send(to Address, groth uint64, options *SendOptions) (transactionId string, err error) {
-	var result struct { txId string }
+	var result struct { TxId string `json:"txId"` }
 	err = c.basicRequest("tx_send", options.rpcPrepare(to, groth), &result)
-	return result.txId, err
+	return result.TxId, err
 }
 
 func (c *Client) Split(coins []uint64, options *SplitOptions) (transactionId string, err error) {
-	var result struct { txId string }
-	err = c.basicRequest("tx_send", options.rpcPrepare(coins), &result)
-	return result.txId, err
+	var result struct { TxId string }
+	err = c.basicRequest("tx_split", options.rpcPrepare(coins), &result)
+	return result.TxId, err
 }
 
 func (c *Client) CancelTransaction(transactionId string) error {
@@ -22,18 +22,37 @@ func (c *Client) DeleteTransaction(transactionId string) error {
 	return c.basicRequest("tx_delete", rpc.JsonParams{ "txId": transactionId }, nil)
 }
 
-type TransactionStatus struct {
+type TransactionStatus uint
+
+const (
+	TransactionStatusPending TransactionStatus = iota
+	TransactionStatusInProgress
+	TransactionStatusCanceled
+	TransactionStatusCompleted
+	TransactionStatusFailed
+	TransactionStatusRegistering
+)
+
+type TransactionType uint
+
+const (
+	TransactionTypeSimple TransactionType = 0 // Simple send/split transactions.
+	TransactionTypeAssetIssue TransactionType = 2 // Issued new tokens on a CA.
+	TransactionTypeAssetBurn TransactionType = 3 // Destroyed existing tokens on a CA.
+	TransactionTypeAssetInfo TransactionType = 6 // Grabs information about an asset.
+)
+
+type TransactionInfo struct {
 	TransactionId string `json:"txId"`
-	AssetId string `json:"asset_id"`
+	AssetId uint64 `json:"asset_id"`
 	Comment string `json:"comment"`
 	Fee uint64 `json:"fee"`
 	Kernel string `json:"kernel"`
 	Receiver string `json:"receiver"`
 	Sender string `json:"sender"`
-	Status uint64 `json:"status"` // todo: enum instead of status + string
-	StatusString string `json:"status_string"`
-	TransactionType uint64 `json:"tx_type"`
-	TransactionTypeString string `json:"tx_type_string"`
+	Status TransactionStatus `json:"status"`
+	StatusInfo string `json:"status_string"`
+	TransactionType TransactionType `json:"tx_type"`
 	FailureReason string `json:"failure_reason"`
 	Value uint64 `json:"value"` // in groth
 	CreationTime uint64 `json:"create_time"`
@@ -43,12 +62,12 @@ type TransactionStatus struct {
 	Token string `json:"token"`
 }
 
-func (c *Client) TransactionStatus(transactionId string) (txStatus TransactionStatus, err error) {
+func (c *Client) TransactionStatus(transactionId string) (txStatus TransactionInfo, err error) {
 	err = c.basicRequest("tx_status", rpc.JsonParams{ "txId": transactionId }, &txStatus)
 	return
 }
 
-func (c *Client) TransactionList(options *TransactionListOptions) (transactions []TransactionStatus, err error) {
+func (c *Client) TransactionList(options *TransactionListOptions) (transactions []TransactionInfo, err error) {
 	err = c.basicRequest("tx_list", options.rpcPrepare(), &transactions)
 	return
 }

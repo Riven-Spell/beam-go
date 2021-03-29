@@ -42,9 +42,10 @@ type ResponseHeader struct {
 
 type ResponseError struct {
 	Code int64 `json:"code"`
+	Data string `json:"data"`
 	Message string `json:"message"`
 }
 
 func (r ResponseError) Error() string {
-	return fmt.Sprintf("Error code %d: %s", r.Code, r.Message)
+	return fmt.Sprintf("Error code %d: %s %s", r.Code, r.Message, r.Data)
 }

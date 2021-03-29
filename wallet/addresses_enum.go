@@ -30,5 +30,4 @@ const (
 	AddressTypeMaxPrivacy AddressType = "max_privacy"
 	AddressTypeOffline AddressType = "offline"
 	AddressTypePublicOffline AddressType = "public_offline"
-	AddressTypeChoice AddressType = "choice"
 )

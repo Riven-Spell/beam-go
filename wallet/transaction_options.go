@@ -62,7 +62,7 @@ type SplitOptions struct {
 
 func (o *SplitOptions) rpcPrepare(splits []uint64) rpc.JsonParams {
 	params := rpc.JsonParams{
-		"splits": splits,
+		"coins": splits,
 	}
 
 	if o == nil {
