@@ -45,6 +45,7 @@ steps:
 - script: |
     # fire up tests
     cd $(modulePath)/wallet
-    export WALLET_ENDPOINT=http://127.0.0.1:5000/api/wallet
+    export MINER_WALLET_ENDPOINT=http://127.0.0.1:5000/api/wallet
+    export SECONDARY_WALLET_ENDPOINT=http://127.0.0.1:6000/api/wallet
     go test
   displayName: 'Run recorded tests'
