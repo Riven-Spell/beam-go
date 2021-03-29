@@ -11,10 +11,10 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_change":48999900,"asset_change_str":"48999900","change":48999900,"change_str":"48999900","explicit_fee":1000100,"explicit_fee_str":"1000100"}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_change":7948999900,"asset_change_str":"7948999900","change":7948999900,"change_str":"7948999900","explicit_fee":1000100,"explicit_fee_str":"1000100"}}
     headers:
       Content-Length:
-      - "195"
+      - "203"
       Content-Type:
       - application/json
     status: 200 OK
@@ -30,83 +30,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839"}
-    headers:
-      Content-Length:
-      - "114"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839","value":100000000}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}
-    headers:
-      Content-Length:
-      - "89"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":true}
-    headers:
-      Content-Length:
-      - "50"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"5fe89f7abc114390b1d64f24aed7817f"}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","create_time":1616984526,"fee":100,"income":false,"receiver":"8272afb8cb21cdf482d7ab5ec3768a146e98dec6ba40d8265c62ab6a1565f1a839","sender":"3e28b06807104d2a3e2b012d8d8b031760033e8ac39e0188c1156c507bcc737dbfd","status":2,"status_string":"cancelled","txId":"5fe89f7abc114390b1d64f24aed7817f","tx_type":0,"tx_type_string":"simple","value":100000000}}
-    headers:
-      Content-Length:
-      - "419"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:6000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"2b2727b66b9ca8a8ab2414758723737c87bf13c1306638be140981952ca10f0080d"}
+      {"id":"http-dummy","jsonrpc":"2.0","result":"2346e4f97f2c8749234f20e1dbeca43884db3a85a36f3c315c11bb576d0184f3b92"}
     headers:
       Content-Length:
       - "115"
@@ -116,7 +40,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"2b2727b66b9ca8a8ab2414758723737c87bf13c1306638be140981952ca10f0080d","value":100000000}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"2346e4f97f2c8749234f20e1dbeca43884db3a85a36f3c315c11bb576d0184f3b92","value":100000000}}'
     form: {}
     headers:
       Content-Type:
@@ -125,7 +49,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"520741ee2bda4b5b8db043fd0bc8480a"}}
     headers:
       Content-Length:
       - "89"
@@ -135,7 +59,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"520741ee2bda4b5b8db043fd0bc8480a"}}'
     form: {}
     headers:
       Content-Type:
@@ -154,7 +78,45 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_delete","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"520741ee2bda4b5b8db043fd0bc8480a"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","create_time":1616989274,"fee":100,"income":false,"receiver":"2346e4f97f2c8749234f20e1dbeca43884db3a85a36f3c315c11bb576d0184f3b92","sender":"1c4c5e4dd1b2f5485c494e52c92829fcbcdbadd5c57440416e13dc1a6e155d44933","status":2,"status_string":"cancelled","txId":"520741ee2bda4b5b8db043fd0bc8480a","tx_type":0,"tx_type_string":"simple","value":100000000}}
+    headers:
+      Content-Length:
+      - "420"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"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","value":100000000}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"858f3245b76745599a7a04a6cc150ad6"}}
+    headers:
+      Content-Length:
+      - "89"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_cancel","params":{"txId":"858f3245b76745599a7a04a6cc150ad6"}}'
     form: {}
     headers:
       Content-Type:
@@ -173,7 +135,26 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"7ef75c8900ff42d0b9bbc8613ab85032"}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_delete","params":{"txId":"858f3245b76745599a7a04a6cc150ad6"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+    url: http://127.0.0.1:5000/api/wallet
+    method: POST
+  response:
+    body: |
+      {"id":"http-dummy","jsonrpc":"2.0","result":true}
+    headers:
+      Content-Length:
+      - "50"
+      Content-Type:
+      - application/json
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"858f3245b76745599a7a04a6cc150ad6"}}'
     form: {}
     headers:
       Content-Type:
@@ -201,7 +182,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"24d4261035ce74cee4dd868bd0990b5333ce6a7f1cef6bea16a7c740f3b5e56ca6b"}
+      {"id":"http-dummy","jsonrpc":"2.0","result":"22340521f76d1ecda23c2c268b301843310f44d5a80bac423d11d00f9b63db8407c"}
     headers:
       Content-Length:
       - "115"
@@ -220,7 +201,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"4359c4b2f5f044019d5de470b78a8eb7"}
+      {"id":"http-dummy","jsonrpc":"2.0","result":"ec4642714a1a4000aa44fb64268320ba"}
     headers:
       Content-Length:
       - "80"
@@ -230,7 +211,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"24d4261035ce74cee4dd868bd0990b5333ce6a7f1cef6bea16a7c740f3b5e56ca6b","txId":"4359c4b2f5f044019d5de470b78a8eb7","value":100000000}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"22340521f76d1ecda23c2c268b301843310f44d5a80bac423d11d00f9b63db8407c","txId":"ec4642714a1a4000aa44fb64268320ba","value":100000000}}'
     form: {}
     headers:
       Content-Type:
@@ -239,7 +220,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"4359c4b2f5f044019d5de470b78a8eb7"}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"ec4642714a1a4000aa44fb64268320ba"}}
     headers:
       Content-Length:
       - "89"
@@ -258,7 +239,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc"}
+      {"id":"http-dummy","jsonrpc":"2.0","result":"a949e23f3cefc68ca929dd6484b93330467d79f9b3b36e1b46b6bfb43c29e96990"}
     headers:
       Content-Length:
       - "114"
@@ -268,7 +249,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc","value":100000000}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"a949e23f3cefc68ca929dd6484b93330467d79f9b3b36e1b46b6bfb43c29e96990","value":100000000}}'
     form: {}
     headers:
       Content-Type:
@@ -277,7 +258,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"b5a6c8bc816345de850ca2b34d332d07"}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"396deb1f536c40acbb943ea751622e2a"}}
     headers:
       Content-Length:
       - "89"
@@ -287,45 +268,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"export_payment_proof","params":{"txId":"b5a6c8bc816345de850ca2b34d332d07"}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"payment_proof":"01a2a997c74f52e718a2e3c4ff5ab2c0990286a98e3276e694100c9ac7c63602674b01fd420e44751a6a78fdb83606aff7e244d3ec60158e25ad6b7fccc793f7e96f11dc0400e1f505e422efd119fa8c1ef6fd72bf9905b5e54dc9b5b30fc1d151e325410a201f1d484434b0609fa5b929c3a8bf8a74520d9e0fad181a984056a14c2f754851ea1a3901d3cab3272db49d9b8c14470f15ff66c17548b63ef38f9d2ce5bebc829523d419"}}
-    headers:
-      Content-Length:
-      - "406"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"verify_payment_proof","params":{"payment_proof":"b5a6c8bc816345de850ca2b34d332d07"}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"error":{"code":-32006,"data":"Failed to parse","message":"Invalid payment proof provided"},"id":"http-dummy","jsonrpc":"2.0"}
-    headers:
-      Content-Length:
-      - "128"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"create_address","params":{}}'
+    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"396deb1f536c40acbb943ea751622e2a"}}'
     form: {}
     headers:
       Content-Type:
@@ -334,45 +277,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378"}
-    headers:
-      Content-Length:
-      - "115"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_send","params":{"address":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378","value":100000000}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:5000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"b6595db690ad4090bb839dc63adb7dc9"}}
-    headers:
-      Content-Length:
-      - "89"
-      Content-Type:
-      - application/json
-    status: 200 OK
-    code: 200
-    duration: ""
-- request:
-    body: '{"jsonrpc":"2.0","id":"http-dummy","method":"tx_status","params":{"txId":"b6595db690ad4090bb839dc63adb7dc9"}}'
-    form: {}
-    headers:
-      Content-Type:
-      - application/json
-    url: http://127.0.0.1:6000/api/wallet
-    method: POST
-  response:
-    body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","confirmations":0,"create_time":1616984561,"fee":100,"height":405,"income":true,"kernel":"8b2957a5358d37cdf727b7a74987f8e65b1d9d2ab9717a63a16d05a55af0b56e","receiver":"2c0588d3c5189ce5ec0cf707a63ed858acbbbba5e963fb4bd94804196258bdea378","sender":"fba4de7cb773a2c0f7a5c309441619a12bf60292270f9296f633927ac47434934","status":3,"status_string":"received","txId":"b6595db690ad4090bb839dc63adb7dc9","tx_type":0,"tx_type_string":"simple","value":100000000}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"asset_id":0,"comment":"","confirmations":1,"create_time":1616989361,"fee":100,"height":153,"income":true,"kernel":"d8ffb952788d651c680c650bf6d58ec380b7412db3a492442ccdff1c2180f6f8","receiver":"a949e23f3cefc68ca929dd6484b93330467d79f9b3b36e1b46b6bfb43c29e96990","sender":"3c1a689f1487182c3c1882569563c029b7d74186a8d67e16dc7092242bc50a4d47","status":3,"status_string":"received","txId":"396deb1f536c40acbb943ea751622e2a","tx_type":0,"tx_type_string":"simple","value":100000000}}
     headers:
       Content-Length:
       - "523"
@@ -391,7 +296,7 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"7d2496881a5f471cac22d356b0d3b643"}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"txId":"fd8813d8415e477698b9397982c536e6"}}
     headers:
       Content-Length:
       - "89"
@@ -410,10 +315,10 @@ interactions:
     method: POST
   response:
     body: |
-      {"id":"http-dummy","jsonrpc":"2.0","result":{"available":3359600000100,"current_height":422,"current_state_hash":"febe9146a1fb23dbca0e9df8fe2b93898f7ad389bd8eca0f26b7d38ed212fc1e","difficulty":3673.9669189453125,"maturing":15899999900,"prev_state_hash":"225a8683ae3d287b5a23db992657456f98423ab13ec3657c7aa434fac438ce16","receiving":0,"sending":0}}
+      {"id":"http-dummy","jsonrpc":"2.0","result":{"available":1368000000100,"current_height":173,"current_state_hash":"d2bbcfadd0c5b374e324eb00533a40d07d6cbc85e6ff2c001886968e29bd441f","difficulty":687.1110229492188,"maturing":15899999900,"prev_state_hash":"3e772b6595f5e906fee62a4e1fb114eb0711c183ff3c4e2dc7cd2ad2318f60f3","receiving":0,"sending":0}}
     headers:
       Content-Length:
-      - "348"
+      - "347"
       Content-Type:
       - application/json
     status: 200 OK

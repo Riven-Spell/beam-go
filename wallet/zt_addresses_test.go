@@ -17,6 +17,8 @@ var _ = chk.Suite(&addressSuite{})
 func (s *addressSuite) SetUpSuite(c *chk.C) {
 	var err error
 	s.recorder, err = recorder.New("recordings/addresses")
+	// use the custom matcher because the original matcher does not match correctly for the beam API
+	s.recorder.SetMatcher(BeamWalletAPIMatcher)
 
 	c.Assert(err, chk.IsNil)
 }

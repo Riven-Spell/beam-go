@@ -3,6 +3,7 @@ package rpc
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 )
 
 type Endpoint interface {
@@ -24,6 +25,10 @@ func (j JsonParams) Merge(params JsonParams) JsonParams {
 	}
 
 	return out
+}
+
+func (j JsonParams) Compare(j2 JsonParams) bool {
+	return reflect.DeepEqual(j, j2)
 }
 
 type RequestHeader struct {

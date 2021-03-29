@@ -1,12 +1,16 @@
 package wallet_test
 
 import (
+	"encoding/json"
 	"github.com/BeamMW/beam-go/rpc"
 	"github.com/BeamMW/beam-go/wallet"
+	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	chk "gopkg.in/check.v1"
+	"io/ioutil"
 	"net/http"
 	"os"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -39,6 +43,16 @@ func GetWalletClient(c *chk.C, r *recorder.Recorder, useMinerWallet bool) *walle
 		Endpoint: TernaryString(useMinerWallet, walletEndpoint, secondaryWalletEndpoint),
 		Transport: transport,
 	})
+}
+
+func BeamWalletAPIMatcher(r *http.Request, i cassette.Request) bool {
+	buf, _ := ioutil.ReadAll(r.Body)
+	var matching map[string]interface{}
+	var source map[string]interface{}
+	json.Unmarshal(buf, &matching)
+	json.Unmarshal([]byte(i.Body), &source)
+
+	return reflect.DeepEqual(matching, source)
 }
 
 func AwaitFundsReady(c *chk.C, useMinerWallet bool, recorderState recorder.Mode, minimumFundsInGroth uint64) {
@@ -77,6 +91,7 @@ func AwaitTransactionCompleted(c *chk.C, useMinerWallet bool, recorderState reco
 				// The transaction has failed (or been cancelled!)
 				c.Log(txInfo.StatusInfo)
 				c.Fail()
+				return
 			}
 
 			time.Sleep(time.Second)
